@@ -8,8 +8,7 @@
  
 
 1-) <strong>film </strong>tablosunda bulunan <strong>title</strong> ve <strong>description</strong>
-
-sütunlarındaki verileri sıralayınız.
+    sütunlarındaki verileri sıralayınız.
  
 ```
  
@@ -21,7 +20,7 @@ SELECT title, description FROM film;
 <br>
 
 2-) <strong>film </strong> tablosunda bulunan tüm sütunlardaki verileri film uzunluğu (length) 60 dan büyük <strong>VE</strong> 75 ten küçük 
-olma koşullarıyla sıralayınız. 
+    olma koşullarıyla sıralayınız. 
 
 ```
 
@@ -33,7 +32,7 @@ WHERE length >= 60 AND length <= 75;
 <br>
 
 3-) <strong>film </strong> tablosunda bulunan tüm sütunlardaki verileri rental_rate 0.99 <strong>VE </strong> replacement_cost 12.99 <strong>VEYA </strong> 
-28.99 olma koşullarıyla sıralayınız. 
+    28.99 olma koşullarıyla sıralayınız. 
 
 ```
 
@@ -56,7 +55,7 @@ WHERE first_name = 'Mary';
 <br>
 
 5-) <strong>film </strong> tablosundaki uzunluğu (length) 50 ten büyük OLMAYIP aynı zamanda rental_rate değeri 2.99 veya 4.99 OLMAYAN 
-verileri sıralayınız. 
+    verileri sıralayınız. 
 
 ```
 
@@ -73,7 +72,7 @@ WHERE NOT length > 50 AND NOT (rental_rate = 2.99 OR rental_rate = 4.99);
 
  
 1-) <strong>film </strong> tablosunda bulunan tüm sütunlardaki verileri replacement cost değeri 12.99 dan büyük eşit ve 16.99 küçük olma 
-koşuluyla sıralayınız ( BETWEEN - AND yapısını kullanınız.)
+    koşuluyla sıralayınız ( BETWEEN - AND yapısını kullanınız.)
  
 ```
  
@@ -83,7 +82,7 @@ WHERE replacement_cost BETWEEN 12.99 AND 16.98;
 ```
 
 2-) <strong>actor</strong> tablosunda bulunan first_name ve last_name sütunlardaki verileri first_name 'Penelope' veya 'Nick' veya 'Ed' değerleri 
-olması koşuluyla sıralayınız. ( IN operatörünü kullanınız.)
+    olması koşuluyla sıralayınız. ( IN operatörünü kullanınız.)
 
 ```
  
@@ -93,7 +92,7 @@ WHERE first_name IN ('Penelope', 'Nick', 'Ed');
 ```
 
 3-) <strong>film</strong>  tablosunda bulunan tüm sütunlardaki verileri rental_rate 0.99, 2.99, 4.99 VE replacement_cost 12.99, 15.99, 28.99 
-olma koşullarıyla sıralayınız. ( IN operatörünü kullanınız.)
+    olma koşullarıyla sıralayınız. ( IN operatörünü kullanınız.)
 
 ```
  
@@ -109,7 +108,7 @@ WHERE rental_rate IN (0.99, 2.99, 4.99) AND replacement_cost IN (12.99, 15.99, 2
 
  
 1-) <strong>country</strong> tablosunda bulunan <strong>country</strong> sütunundaki ülke isimlerinden 'A' karakteri ile başlayıp 
-'a' karakteri ile sonlananları sıralayınız.
+    'a' karakteri ile sonlananları sıralayınız.
  
 ```
  
@@ -120,7 +119,7 @@ WHERE country LIKE 'A%a';
 ```
  
 2-) <strong>country</strong> tablosunda bulunan <strong>country</strong> sütunundaki ülke isimlerinden en az 6 karakterden oluşan ve sonu 
-'n' karakteri ile sonlananları sıralayınız.
+    'n' karakteri ile sonlananları sıralayınız.
 
 ```
  
@@ -130,7 +129,7 @@ WHERE country LIKE '%_____n';
 ```
 
 3-) <strong>film</strong> tablosunda bulunan <strong>title</strong> sütunundaki film isimlerinden en az 4 adet büyük ya da küçük harf 
-farketmesizin 'T' karakteri içeren film isimlerini sıralayınız.
+    farketmesizin 'T' karakteri içeren film isimlerini sıralayınız.
 
 ```
  
@@ -141,7 +140,7 @@ WHERE title ILIKE '%t%t%t%t%';
 ```
 
 4-) <strong>film</strong> tablosunda bulunan tüm sütunlardaki verilerden <strong>title</strong> 'C' karakteri ile başlayan ve 
-uzunluğu (length) 90 dan büyük olan ve rental_rate 2.99 olan verileri sıralayınız.
+    uzunluğu (length) 90 dan büyük olan ve rental_rate 2.99 olan verileri sıralayınız.
 
 ```
  
@@ -206,6 +205,44 @@ WHERE city ILIKE '%R';
  
 ```
 
-
+## SQL Ödev 05 
 
  
+<br>
+
+
+1-) <strong>film</strong> tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en uzun (length) 5 filmi sıralayınız.
+ 
+```
+
+SELECT * FROM film
+WHERE title LIKE '%n'
+ORDER BY length DESC
+LIMIT 5;
+ 
+```
+
+2-) <strong>film</strong> tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en kısa (length) ikinci(6,7,8,9,10) 
+    5 filmi(6,7,8,9,10) sıralayınız.
+ 
+```
+
+SELECT * FROM film
+WHERE title LIKE '%n'
+ORDER BY length ASC
+OFFSET 6
+LIMIT 5;
+ 
+```
+
+3-) <strong>customer</strong> tablosunda bulunan last_name sütununa göre azalan yapılan sıralamada store_id 1 olmak koşuluyla ilk 4 veriyi sıralayınız.
+
+```
+
+SELECT * FROM customer
+WHERE store_id = 1 
+ORDER BY last_name DESC
+LIMIT 4;
+ 
+```
+
