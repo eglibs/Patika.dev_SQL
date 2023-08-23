@@ -1,4 +1,4 @@
-# sqlbilge_patika
+# sql_patika
 ## SQL Ödev 01 | WHERE ve Karşılaştırma & Mantıksal Operatörler
 
  
@@ -286,3 +286,50 @@ SELECT DISTINCT replacement_cost FROM film
 WHERE length > 150;
 
 ```
+
+## SQL Ödev 07 
+
+ 
+<br>
+
+
+1-) <strong>film</strong> tablosunda bulunan filmleri <strong>rating</strong> değerlerine göre gruplayınız.
+ 
+```
+
+SELECT rating FROM film
+GROUP BY rating;
+ 
+```
+
+2-) <strong>film</strong> tablosunda bulunan filmleri <strong>replacement_cost</strong> sütununa göre grupladığımızda film sayısı 50 den fazla olan 
+replacement_cost değerini ve karşılık gelen film sayısını sıralayınız.
+ 
+```
+
+SELECT replacement_cost, COUNT(*) FROM film
+GROUP BY replacement_cost
+HAVING COUNT(*) > 50;
+ 
+```
+
+3-) <strong>customer</strong> tablosunda bulunan store_id değerlerine karşılık gelen müşteri sayılarını nelerdir? 
+
+```
+
+SELECT store_id, COUNT(*) FROM customer
+GROUP BY store_id;
+ 
+```
+
+4-) City tablosunda bulunan şehir verilerini <strong>country_id</strong> sütununa göre gruplandırdıktan sonra en fazla şehir sayısı barındıran country_id
+bilgisini ve şehir sayısını paylaşınız.
+
+```
+
+SELECT country_id, COUNT(*) FROM city
+GROUP BY country_id
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+ 
+``` 
