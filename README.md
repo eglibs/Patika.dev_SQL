@@ -608,3 +608,57 @@ SELECT first_name FROM customer
 );
  
 ```
+
+## SQL Ödev 12
+
+ 
+<br>
+
+
+1-) <strong>film</strong> tablosunda film uzunluğu <strong>length </strong> sütununda gösterilmektedir. Uzunluğu ortalama film uzunluğundan fazla kaç tane film vardır?
+
+```
+
+SELECT COUNT(*) FROM film
+WHERE length > ANY 
+(
+SELECT AVG(length) FROM film
+);
+ 
+```
+
+2-) <strong>film</strong> tablosunda en yüksek rental_rate değerine sahip kaç tane film vardır?
+
+```
+
+SELECT COUNT(*) FROM film
+WHERE rental_rate =
+(
+SELECT MAX(rental_rate) FROM film
+);
+ 
+```
+
+3-) <strong>film</strong> tablosunda en düşük rental_rate ve en düşün replacement_cost değerlerine sahip filmleri sıralayınız.
+
+```
+
+SELECT * FROM film
+WHERE rental_rate = (SELECT MIN(rental_rate) FROM film) 
+   AND replacement_cost = (SELECT MIN(replacement_cost) FROM film);
+ 
+```
+4-) <strong>payment</strong> tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
+
+```
+
+SELECT customer_id, COUNT(payment_id) payment_count
+FROM payment
+GROUP BY customer_id
+HAVING COUNT(payment_id) = (SELECT COUNT(payment_id) 
+			    FROM payment 
+		  	    GROUP BY customer_id 
+			    ORDER BY COUNT(payment_id) DESC 
+	       	            LIMIT 1);
+ 
+```
